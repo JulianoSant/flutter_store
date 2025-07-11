@@ -45,6 +45,7 @@ flutter:
 
   assets:
     - assets/mock_data.json
+    - assets/itens/
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
