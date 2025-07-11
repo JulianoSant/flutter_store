@@ -1,0 +1,86 @@
+{
+  "sandwiches": [
+    {
+      "id": 1,
+      "name": "X Burger",
+      "price": 5.00
+    },
+    {
+      "id": 2,
+      "name": "X Egg",
+      "price": 4.50
+    },
+    {
+      "id": 3,
+      "name": "X Bacon",
+      "price": 7.00
+    }
+  ],
+  "extras": [
+    {
+      "id": 101,
+      "name": "Fries",
+      "price": 2.00,
+      "type": "fries"
+    },
+    {
+      "id": 102,
+      "name": "Soft Drink",
+      "price": 2.50,
+      "type": "drink"
+    }
+  ],
+  "discount_rules": [
+    {
+      "combo": ["sandwich", "fries", "drink"],
+      "discount_percent": 20
+    },
+    {
+      "combo": ["sandwich", "drink"],
+      "discount_percent": 15
+    },
+    {
+      "combo": ["sandwich", "fries"],
+      "discount_percent": 10
+    }
+  ],
+  "cart": {
+    "items": [
+      {
+        "product_id": 1,
+        "type": "sandwich",
+        "name": "X Burger",
+        "price": 5.00,
+        "quantity": 1
+      },
+      {
+        "product_id": 101,
+        "type": "fries",
+        "name": "Fries",
+        "price": 2.00,
+        "quantity": 1
+      },
+      {
+        "product_id": 102,
+        "type": "drink",
+        "name": "Soft Drink",
+        "price": 2.50,
+        "quantity": 1
+      }
+    ],
+    "customer_name": "João da Silva",
+    "total_without_discount": 9.50,
+    "discount_percent_applied": 20,
+    "total_with_discount": 7.60
+  },
+  "order_success": {
+    "order_id": 123456,
+    "customer_name": "João da Silva",
+    "items": [
+      "X Burger",
+      "Fries",
+      "Soft Drink"
+    ],
+    "total_paid": 7.60
+  }
+}
