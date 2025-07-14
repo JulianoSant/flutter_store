@@ -46,11 +46,26 @@ class _CartPageState extends State<CartPage> {
                     return ListTile(
                       title: Text(item.name),
                       subtitle: Text('Tipo: ${item.type}'),
-                      trailing: Text('R\$ ${item.price.toStringAsFixed(2)}'),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete, color: Colors.red),
+                        tooltip: 'Remover item',
+                        onPressed: () {
+                          cartController.removeItemByType(item.type);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('${item.name} removido do carrinho'),
+                              backgroundColor: Colors.green[600],
+                              duration: const Duration(milliseconds: 800),
+                              behavior: SnackBarBehavior.floating,
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                 ),
               ),
+
               const SizedBox(height: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
