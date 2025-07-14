@@ -1,18 +1,42 @@
-# flutter_store
+# 🍔 Bom Hambúrguer – App de Pedidos (Flutter)
 
-A new Flutter project.
+Aplicativo de pedidos desenvolvido em Flutter como teste técnico, utilizando arquitetura MVC com Flutter Modular e MobX. O usuário pode montar seu pedido com sanduíches, fritas e refrigerante, com descontos aplicados automaticamente de acordo com as combinações escolhidas.
 
-flutter version 3.32.5
+---
 
-## Getting Started
+## 🚀 Tecnologias Utilizadas
 
-This project is a starting point for a Flutter application.
+- ✅ **Flutter 3.22.5
+- ✅ **Flutter Modular (v6+)**
+- ✅ **MobX** (gerenciamento de estado reativo)
+- ✅ **MVC** (Model-View-Controller)
+- ✅ **Testes unitários com Flutter Test**
+- ✅ Dados mockados via `assets/json`
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📱 Funcionalidades
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Listagem de sanduíches e extras (dados mockados)
+- Adição dinâmica de itens ao carrinho
+- Descontos aplicados com base em regras de combo
+- Pagamento fictício (somente nome do cliente)
+- Tela de confirmação de pedido
+- Validação de entrada e feedback visual
+
+---
+
+## 📁 Estrutura de Pastas
+
+lib/
+├── app/ # AppWidget e AppModule
+├── main.dart # Entry point
+├── models/ # Modelos de dados (Sandwich, CartItem, Order...)
+├── services/ # Regras de negócio (Descontos, Produtos)
+├── shared/widgets/ # Widgets reutilizáveis
+├── modules/
+│ ├── home/ # Página inicial
+│ ├── cart/ # Carrinho + controller (MobX)
+│ └── success/ # Tela de sucesso
+assets/
+└── itens/ # Imagens dos produtos (mock)
