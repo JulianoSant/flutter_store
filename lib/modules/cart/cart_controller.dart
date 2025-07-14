@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_store/models/cart_item_model.dart';
+import 'package:flutter_store/models/order_model.dart';
 import 'package:flutter_store/services/discount_service.dart';
 import 'package:mobx/mobx.dart';
 
@@ -64,7 +65,14 @@ abstract class _CartControllerBase with Store {
       return;
     }
 
-    Modular.to.pushNamed('/success', arguments: {'name': customerName, 'total': totalWithDiscount});
+    final order = OrderModel(
+      orderId: DateTime.now().millisecondsSinceEpoch,
+      customerName: customerName,
+      items: items.map((e) => e.name).toList(),
+      totalPaid: totalWithDiscount,
+    );
+
+    Modular.to.pushNamed('/success', arguments: order);
 
     clearCart();
   }
