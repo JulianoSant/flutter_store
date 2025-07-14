@@ -6,7 +6,7 @@ Aplicativo de pedidos desenvolvido em Flutter como teste técnico, utilizando ar
 
 ## 🚀 Tecnologias Utilizadas
 
-- ✅ **Flutter 3.22.5
+- ✅ **Flutter 3.22.5**
 - ✅ **Flutter Modular (v6+)**
 - ✅ **MobX** (gerenciamento de estado reativo)
 - ✅ **MVC** (Model-View-Controller)
