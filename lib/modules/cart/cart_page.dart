@@ -11,24 +11,8 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final cartStore = Modular.get<CartController>();
+  final cartController = Modular.get<CartController>();
   final nameController = TextEditingController();
-
-  void _finalizeOrder() {
-    if (cartStore.customerName.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Informe o nome do cliente.')));
-      return;
-    }
-
-    if (cartStore.items.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Carrinho vazio.')));
-      return;
-    }
-
-    Modular.to.pushNamed('/success', arguments: {'name': cartStore.customerName, 'total': cartStore.totalWithDiscount});
-
-    cartStore.clearCart();
-  }
 
   @override
   void dispose() {
@@ -38,7 +22,7 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    nameController.text = cartStore.customerName;
+    nameController.text = cartController.customerName;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Carrinho')),
@@ -50,15 +34,15 @@ class _CartPageState extends State<CartPage> {
               TextField(
                 controller: nameController,
                 decoration: const InputDecoration(labelText: 'Nome do cliente'),
-                onChanged: cartStore.setCustomerName,
+                onChanged: cartController.setCustomerName,
               ),
               const SizedBox(height: 16),
               Expanded(
                 child: ListView.separated(
-                  itemCount: cartStore.items.length,
+                  itemCount: cartController.items.length,
                   separatorBuilder: (_, __) => const Divider(),
                   itemBuilder: (_, index) {
-                    final item = cartStore.items[index];
+                    final item = cartController.items[index];
                     return ListTile(
                       title: Text(item.name),
                       subtitle: Text('Tipo: ${item.type}'),
@@ -71,15 +55,15 @@ class _CartPageState extends State<CartPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('Subtotal: R\$ ${cartStore.totalWithoutDiscount.toStringAsFixed(2)}'),
-                  Text('Desconto: ${cartStore.discountPercent}%'),
+                  Text('Subtotal: R\$ ${cartController.totalWithoutDiscount.toStringAsFixed(2)}'),
+                  Text('Desconto: ${cartController.discountPercent}%'),
                   Text(
-                    'Total: R\$ ${cartStore.totalWithDiscount.toStringAsFixed(2)}',
+                    'Total: R\$ ${cartController.totalWithDiscount.toStringAsFixed(2)}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton.icon(
-                    onPressed: _finalizeOrder,
+                    onPressed: () => cartController.finalizeOrder(context),
                     icon: const Icon(Icons.check),
                     label: const Text('Finalizar Pedido'),
                   ),

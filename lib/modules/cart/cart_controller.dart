@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_store/models/cart_item_model.dart';
 import 'package:flutter_store/services/discount_service.dart';
 import 'package:mobx/mobx.dart';
@@ -49,5 +51,25 @@ abstract class _CartControllerBase with Store {
   @action
   void setCustomerName(String name) {
     customerName = name;
+  }
+
+  void finalizeOrder(BuildContext context) {
+    if (customerName.trim().isEmpty) {
+      _showMessage(context, 'Informe o nome do cliente.');
+      return;
+    }
+
+    if (items.isEmpty) {
+      _showMessage(context, 'Carrinho vazio.');
+      return;
+    }
+
+    Modular.to.pushNamed('/success', arguments: {'name': customerName, 'total': totalWithDiscount});
+
+    clearCart();
+  }
+
+  void _showMessage(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 }
