@@ -3,17 +3,20 @@
     {
       "id": 1,
       "name": "X Burger",
-      "price": 5.00
+      "price": 5.00,
+      "imagePath": "assets/itens/X-Burger.png"
     },
     {
       "id": 2,
       "name": "X Egg",
-      "price": 4.50
+      "price": 4.50,
+      "imagePath": "assets/itens/X-Egg.png"
     },
     {
       "id": 3,
       "name": "X Bacon",
-      "price": 7.00
+      "price": 7.00,
+      "imagePath": "assets/itens/X-Bacon.png"
     }
   ],
   "extras": [
@@ -21,66 +24,32 @@
       "id": 101,
       "name": "Fries",
       "price": 2.00,
-      "type": "fries"
+      "type": "fries",
+      "imagePath": "assets/itens/Fries.png"
     },
     {
       "id": 102,
       "name": "Soft Drink",
       "price": 2.50,
-      "type": "drink"
+      "type": "drink",
+      "imagePath": "assets/itens/Soft-Drink.png"
     }
   ],
   "discount_rules": [
     {
       "combo": ["sandwich", "fries", "drink"],
-      "discount_percent": 20
+      "discount_percent": 20,
+      "imagePath": "assets/itens/Combo-1.png"
     },
     {
       "combo": ["sandwich", "drink"],
-      "discount_percent": 15
+      "discount_percent": 15,
+      "imagePath": "assets/itens/Combo-2.png"
     },
     {
       "combo": ["sandwich", "fries"],
-      "discount_percent": 10
+      "discount_percent": 10,
+      "imagePath": "assets/itens/Combo-3.png"
     }
-  ],
-  "cart": {
-    "items": [
-      {
-        "product_id": 1,
-        "type": "sandwich",
-        "name": "X Burger",
-        "price": 5.00,
-        "quantity": 1
-      },
-      {
-        "product_id": 101,
-        "type": "fries",
-        "name": "Fries",
-        "price": 2.00,
-        "quantity": 1
-      },
-      {
-        "product_id": 102,
-        "type": "drink",
-        "name": "Soft Drink",
-        "price": 2.50,
-        "quantity": 1
-      }
-    ],
-    "customer_name": "João da Silva",
-    "total_without_discount": 9.50,
-    "discount_percent_applied": 20,
-    "total_with_discount": 7.60
-  },
-  "order_success": {
-    "order_id": 123456,
-    "customer_name": "João da Silva",
-    "items": [
-      "X Burger",
-      "Fries",
-      "Soft Drink"
-    ],
-    "total_paid": 7.60
-  }
+  ]
 }

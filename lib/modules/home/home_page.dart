@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
                         (s) => ProductCard(
                           name: s.name,
                           price: s.price,
+                          imagePath: s.imagePath,
                           onTap: () => homeController.addProductToCart(
                             id: s.id,
                             name: s.name,
@@ -77,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                         (e) => ProductCard(
                           name: e.name,
                           price: e.price,
+                          imagePath: e.imagePath,
                           onTap: () => homeController.addProductToCart(
                             id: e.id,
                             name: e.name,
