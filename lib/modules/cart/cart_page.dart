@@ -33,56 +33,87 @@ class _CartPageState extends State<CartPage> {
             children: [
               TextField(
                 controller: nameController,
-                decoration: const InputDecoration(labelText: 'Nome do cliente'),
                 onChanged: cartController.setCustomerName,
+                decoration: InputDecoration(
+                  labelText: 'Nome do cliente',
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                ),
               ),
               const SizedBox(height: 16),
+
+              // Lista de itens
               Expanded(
-                child: ListView.separated(
-                  itemCount: cartController.items.length,
-                  separatorBuilder: (_, __) => const Divider(),
-                  itemBuilder: (_, index) {
-                    final item = cartController.items[index];
-                    return ListTile(
-                      title: Text(item.name),
-                      subtitle: Text('Tipo: ${item.type}'),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete, color: Colors.red),
-                        tooltip: 'Remover item',
-                        onPressed: () {
-                          cartController.removeItemByType(item.type);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('${item.name} removido do carrinho'),
-                              backgroundColor: Colors.green[600],
-                              duration: const Duration(milliseconds: 800),
-                              behavior: SnackBarBehavior.floating,
+                child: cartController.items.isEmpty
+                    ? const Center(child: Text('Seu carrinho está vazio.'))
+                    : ListView.builder(
+                        itemCount: cartController.items.length,
+                        itemBuilder: (context, index) {
+                          final item = cartController.items[index];
+                          return Card(
+                            margin: const EdgeInsets.symmetric(vertical: 8),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            elevation: 3,
+                            child: ListTile(
+                              title: Text(item.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                              subtitle: Text('Tipo: ${item.type}'),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete_outline, color: Colors.red),
+                                onPressed: () {
+                                  cartController.removeItemByType(item.type);
+                                  ScaffoldMessenger.of(
+                                    context,
+                                  ).showSnackBar(SnackBar(content: Text('${item.name} removido do carrinho')));
+                                },
+                              ),
                             ),
                           );
                         },
                       ),
-                    );
-                  },
-                ),
               ),
 
               const SizedBox(height: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text('Subtotal: R\$ ${cartController.totalWithoutDiscount.toStringAsFixed(2)}'),
-                  Text('Desconto: ${cartController.discountPercent}%'),
-                  Text(
-                    'Total: R\$ ${cartController.totalWithDiscount.toStringAsFixed(2)}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+
+              // Área de totais
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text('Subtotal: R\$ ${cartController.totalWithoutDiscount.toStringAsFixed(2)}'),
+                    Text('Desconto: ${cartController.discountPercent}%'),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Total: R\$ ${cartController.totalWithDiscount.toStringAsFixed(2)}',
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Botão finalizar
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () => cartController.finalizeOrder(context),
+                  icon: const Icon(Icons.check_circle_outline, color: Colors.white),
+                  label: const Text('Finalizar Pedido', style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: Colors.green[600],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 16),
-                  ElevatedButton.icon(
-                    onPressed: () => cartController.finalizeOrder(context),
-                    icon: const Icon(Icons.check),
-                    label: const Text('Finalizar Pedido'),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
