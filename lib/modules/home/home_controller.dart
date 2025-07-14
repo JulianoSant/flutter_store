@@ -27,9 +27,23 @@ class HomeController {
   }) {
     try {
       cartStore.addItem(CartItemModel(productId: id, name: name, price: price, quantity: 1, type: type));
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$name adicionado ao carrinho')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$name adicionado ao carrinho'),
+          backgroundColor: Colors.green[600],
+          duration: const Duration(milliseconds: 800),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
+          duration: const Duration(milliseconds: 800),
+          backgroundColor: Colors.red[600],
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
     }
   }
 }
