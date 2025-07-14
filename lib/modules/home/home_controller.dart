@@ -3,12 +3,12 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_store/models/cart_item_model.dart';
 import 'package:flutter_store/models/extra_model.dart';
 import 'package:flutter_store/models/sandwich_model.dart';
+import 'package:flutter_store/modules/cart/cart_controller.dart';
 import 'package:flutter_store/services/product_service.dart';
-import 'package:flutter_store/stores/cart_store.dart';
 
 class HomeController {
   final productService = ProductService();
-  final cartStore = Modular.get<CartStore>();
+  final cartStore = Modular.get<CartController>();
 
   late Future<List<SandwichModel>> sandwichesFuture;
   late Future<List<ExtraModel>> extrasFuture;

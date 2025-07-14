@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_store/stores/cart_store.dart';
+import 'package:flutter_store/modules/cart/cart_controller.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -11,7 +11,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-  final cartStore = Modular.get<CartStore>();
+  final cartStore = Modular.get<CartController>();
   final nameController = TextEditingController();
 
   void _finalizeOrder() {

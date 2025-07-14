@@ -1,16 +1,15 @@
+import 'package:flutter_store/models/cart_item_model.dart';
+import 'package:flutter_store/services/discount_service.dart';
 import 'package:mobx/mobx.dart';
 
-import '../models/cart_item_model.dart';
-import '../services/discount_service.dart';
+part 'cart_controller.g.dart';
 
-part 'cart_store.g.dart';
+class CartController = _CartControllerBase with _$CartController;
 
-class CartStore = _CartStoreBase with _$CartStore;
-
-abstract class _CartStoreBase with Store {
+abstract class _CartControllerBase with Store {
   final DiscountService discountService;
 
-  _CartStoreBase({required this.discountService});
+  _CartControllerBase({required this.discountService});
 
   @observable
   ObservableList<CartItemModel> items = ObservableList<CartItemModel>();

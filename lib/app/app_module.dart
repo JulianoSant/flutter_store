@@ -1,10 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_store/models/discount_rule_model.dart';
+import 'package:flutter_store/modules/cart/cart_controller.dart';
 import 'package:flutter_store/modules/cart/cart_module.dart';
 import 'package:flutter_store/modules/home/home_module.dart';
 import 'package:flutter_store/modules/success/success_module.dart';
 import 'package:flutter_store/services/discount_service.dart';
-import 'package:flutter_store/stores/cart_store.dart';
 
 class AppModule extends Module {
   @override
@@ -18,7 +18,7 @@ class AppModule extends Module {
         ],
       ),
     );
-    i.addSingleton(() => CartStore(discountService: i()));
+    i.addSingleton(() => CartController(discountService: i()));
   }
 
   @override
