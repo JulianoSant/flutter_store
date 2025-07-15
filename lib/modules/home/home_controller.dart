@@ -5,10 +5,11 @@ import 'package:flutter_store/models/extra_model.dart';
 import 'package:flutter_store/models/sandwich_model.dart';
 import 'package:flutter_store/modules/cart/cart_controller.dart';
 import 'package:flutter_store/services/product_service.dart';
+import 'package:flutter_store/shared/widgets/app_snack_bar.dart';
 
 class HomeController {
   final productService = ProductService();
-  final cartStore = Modular.get<CartController>();
+  final cartController = Modular.get<CartController>();
 
   late Future<List<SandwichModel>> sandwichesFuture;
   late Future<List<ExtraModel>> extrasFuture;
@@ -26,24 +27,10 @@ class HomeController {
     required BuildContext context,
   }) {
     try {
-      cartStore.addItem(CartItemModel(productId: id, name: name, price: price, quantity: 1, type: type));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('$name adicionado ao carrinho'),
-          backgroundColor: Colors.green[600],
-          duration: const Duration(milliseconds: 800),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      cartController.addItem(CartItemModel(productId: id, name: name, price: price, quantity: 1, type: type));
+      AppSnackBar.show(context, '$name adicionado ao carrinho', type: AppSnackBarType.success);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toString()),
-          duration: const Duration(milliseconds: 800),
-          backgroundColor: Colors.red[600],
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      AppSnackBar.show(context, e.toString(), type: AppSnackBarType.error);
     }
   }
 }

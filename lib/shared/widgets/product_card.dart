@@ -13,17 +13,11 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  double _scale = 1.0;
-
-  void _animateDown() => setState(() => _scale = 0.97);
-  void _animateUp() => setState(() => _scale = 1.0);
+  final double _scale = 1.0;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) => _animateDown(),
-      onTapUp: (_) => _animateUp(),
-      onTapCancel: _animateUp,
       onTap: widget.onTap,
       child: AnimatedScale(
         duration: const Duration(milliseconds: 120),

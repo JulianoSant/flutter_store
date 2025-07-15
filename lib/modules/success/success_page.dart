@@ -11,18 +11,13 @@ class SuccessPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Pedido Confirmado'),
-        automaticallyImplyLeading: false,
-        // backgroundColor: Colors.redAccent,
-      ),
+      appBar: AppBar(title: const Text('Pedido Confirmado'), automaticallyImplyLeading: false),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Ícone com destaque
               const Icon(Icons.check_circle_rounded, color: Colors.green, size: 100),
 
               const SizedBox(height: 24),

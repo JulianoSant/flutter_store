@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_store/models/cart_item_model.dart';
 import 'package:flutter_store/models/order_model.dart';
 import 'package:flutter_store/services/discount_service.dart';
+import 'package:flutter_store/shared/widgets/app_snack_bar.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cart_controller.g.dart';
@@ -78,6 +79,6 @@ abstract class _CartControllerBase with Store {
   }
 
   void _showMessage(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    AppSnackBar.show(context, message, type: AppSnackBarType.info, duration: const Duration(seconds: 2));
   }
 }

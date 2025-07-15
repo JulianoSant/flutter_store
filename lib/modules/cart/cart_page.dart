@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_store/modules/cart/cart_controller.dart';
+import 'package:flutter_store/shared/widgets/app_snack_bar.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -63,9 +64,12 @@ class _CartPageState extends State<CartPage> {
                                 icon: const Icon(Icons.delete_outline, color: Colors.red),
                                 onPressed: () {
                                   cartController.removeItemByType(item.type);
-                                  ScaffoldMessenger.of(
+                                  AppSnackBar.show(
                                     context,
-                                  ).showSnackBar(SnackBar(content: Text('${item.name} removido do carrinho')));
+                                    '${item.name} removido do carrinho',
+                                    type: AppSnackBarType.success,
+                                    duration: const Duration(seconds: 2),
+                                  );
                                 },
                               ),
                             ),
